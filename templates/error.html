@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+
+{% block insert %}
+<div class="text-center well-lg">
+    <h1>Leave Form</h1>
+</div>
+<div class='alert alert-danger' style="width: fit-content;"><h4>{{ error_message }}</h4></div>
+
+
+<form method="post" >
+{% csrf_token %}
+<fieldset class="module aligned ">
+{% for field in attform %}
+<div class="form-group">
+    <span class="small text-centered bg-danger">{{ field.errors }}</span>
+    <div class="form-row">
+        <div>
+    <label>{{ field.label_tag }}</label>
+        {{ field }}
+    </div>
+    </div>
+</div>
+{% endfor %}
+</fieldset>
+<div class="container text-center" >
+<button class="btn btn-primary" type="submit" style="margin-bottom: 10px;">Submit</button>
+</div>
+</form>
+
+
+{% endblock %}

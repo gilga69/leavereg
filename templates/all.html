@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+
+{% block insert %}
+    <table class="table table-striped">
+    <tr>
+<th>
+   Name
+</th>
+
+<th>
+Contact Number
+</th>
+
+
+<th>
+    Room Number
+ </th>
+
+<th>
+    From Date
+ </th>
+
+
+<th>
+    To Date
+ </th>
+
+
+<th>
+    Purpose
+ </th>
+    </tr>
+
+
+   {% for entry in all_entries %}
+    <tr>
+        <td>
+           {{ entry.name }}
+        </td>
+
+        <td>
+           {{ entry.contact_no }}
+        </td>
+
+        <td>
+           {{ entry.room_no}}
+        </td>
+
+        <td>
+           {{ entry.from_date}}
+        </td>
+
+        <td>
+           {{ entry.to_date }}
+        </td>
+
+        <td>
+           {{ entry.purpose}}
+        </td>
+    </tr>
+    {% endfor %}
+
+</table>
+
+<div class="text-center">
+<button class="btn btn-success" onclick="window.print();">Print</button>
+</div>
+{% endblock %}

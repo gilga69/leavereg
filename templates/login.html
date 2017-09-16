@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block insert %}
+    <div class="text-center ">
+<form method="post" style="display: inline-block; border: thin solid black; border-radius: 5px;">
+    {% csrf_token %}
+    <fieldset class="module aligned ">
+
+<div class="form-group">
+        <div class="form-row">
+        <div>
+    <label>Username</label>
+       <input type="text" name="username">
+    </div>
+    </div>
+</div>
+
+
+<div class="form-group">
+    <div class="form-row">
+        <div>
+    <label>Password</label>
+        <input type="PASSWORD" name="password">
+    </div>
+    </div>
+</div>
+
+</fieldset>
+    <button type="submit" class="btn btn-warning" style="margin-bottom: 5px;" >Submit</button>
+    </form>
+    </div>
+
+{% endblock %}

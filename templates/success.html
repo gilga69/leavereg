@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+
+{% block insert %}
+<div class='alert alert-success'><h6>{{ success_message }}</h6></div>
+    <div class="text-center">
+        <a class="btn btn-info" href="{% url 'att:index' %}">OK</a>
+    </div>
+
+{% endblock %}
