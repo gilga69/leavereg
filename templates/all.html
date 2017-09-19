@@ -2,7 +2,8 @@
 
 
 {% block insert %}
-    <table class="table table-striped">
+    <div class="jumbotron text-center"><h2>All Leave Entries </h2></div>
+    <table class="table ">
     <tr>
 <th>
    Name
@@ -25,16 +26,15 @@ Contact Number
 <th>
     To Date
  </th>
-
-
-<th>
-    Purpose
- </th>
     </tr>
 
 
    {% for entry in all_entries %}
-    <tr>
+
+    <tr {% if entry.approved == True %}class="bg-success"
+    {% endif %}
+    {% if entry.approved == False %}class="bg-danger"
+    {% endif %}>
         <td>
            {{ entry.name }}
         </td>
@@ -55,15 +55,9 @@ Contact Number
            {{ entry.to_date }}
         </td>
 
-        <td>
-           {{ entry.purpose}}
-        </td>
-    </tr>
+           </tr>
     {% endfor %}
 
 </table>
 
-<div class="text-center">
-<button class="btn btn-success" onclick="window.print();">Print</button>
-</div>
 {% endblock %}

@@ -1,13 +1,19 @@
 {% extends 'base.html' %}
 
 {% block insert %}
-<div class="container-fluid text-center " style="background-color:#34495e; height: 300px ;margin-top: -20px;">
-    <a href="{% url 'att:att' %}" style="text-decoration: none;"><h1 style="color:#f1c40f;margin-top: 80px;">HKS Leave Register</h1></a>
+<div class="container-fluid text-center " style="background-color:#e74c3c; height: 300px ;margin-top: -20px;">
+    <a href="{% url 'att:att' %}" style="text-decoration: none;" ><h1 style="color:#2c3e50;margin-top: 80px; font-family: 'Baloo Tammudu', cursive;font-size: 4em;">HKS Leave Register</h1></a>
 
 </div>
-    <div class="container-fluid text-center " style="background-color:#2c3e50; height: 300px;">
-        <a href="{% url 'att:all_attendance' %}" style="text-decoration: none;"><h1 style="color:#e67e22;margin-top: 80px;">List of entries</h1></a>
+    <div class="container-fluid text-center " style="background-color:#f1c40f; height: 300px;">
+        <a href="{% url 'att:attview' %}" style="text-decoration: none;font-size: "><h1 style="color:#2c3e50;margin-top: 80px;font-family: 'Baloo Tammudu', cursive;font-size: 4em;">List of entries</h1></a>
 
 </div>
+
+<div class="container-fluid text-center " style="background-color:#27ae60; height: 300px;">
+        <a href="{% url 'att:attview' %}" style="text-decoration: none;font-size:" ><h1 style="color:#2c3e50;margin-top: 80px;font-family: 'Baloo Tammudu', cursive;font-size: 4em;">Warden Comittee Login</h1></a>
+
+</div>
+
 
 {% endblock %}

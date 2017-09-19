@@ -8,8 +8,8 @@ class attsheet(models.Model):
     from_date=models.DateField()
     to_date=models.DateField()
     purpose=models.TextField(max_length=500)
-
+    approved=models.BooleanField(default=False)
 
     def __str__(self):
-        return self.name+"'s"+'entry'
+        return self.name+"'s"+' leave entry'
 

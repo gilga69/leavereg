@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+
+{% block insert %}
+    <div class="well well-sm text-center"><h2>All Leave Entries </h2></div>
+    <table class="table table-striped">
+    <tr>
+<th>
+   Name
+</th>
+
+<th>
+Contact Number
+</th>
+
+
+<th>
+    Room Number
+ </th>
+
+<th>
+    From Date
+ </th>
+
+
+<th>
+    To Date
+ </th>
+
+
+<th>
+    Purpose
+ </th>
+        <th>
+            Approval Status
+        </th>
+
+    </tr>
+
+
+   {% for entry in all_entries %}
+    <tr>
+        <td>
+           {{ entry.name }}
+        </td>
+
+        <td>
+           {{ entry.contact_no }}
+        </td>
+
+        <td>
+           {{ entry.room_no}}
+        </td>
+
+        <td>
+           {{ entry.from_date}}
+        </td>
+
+        <td>
+           {{ entry.to_date }}
+        </td>
+
+        <td>
+           {{ entry.purpose}}
+        </td>
+
+
+        <td>
+            {% if entry.approved == True%}
+                <button class="btn btn-info" type="button">Approved <span class="glyphicon glyphicon-ok"></span></button>
+            {% endif %}
+
+             {% if entry.approved == False%}
+                 <div style="color:darkred"><b>Approval Pending</b></div>
+               <a href="{% url 'att:approveit' entry.pk %}"><button class="btn btn-success" type="button">Approve Now <span class="glyphicon glyphicon-check"></span></button></a>
+
+
+
+             {% endif %}
+        </td>
+   </tr>
+    {% endfor %}
+
+</table>
+
+<div class="text-center">
+<button class="btn btn-success" onclick="window.print();">Print</button>
+</div>
+
+    {% if approvance == True %}
+
+        <div class="alert alert-success" style="margin-top: 10px; "><strong>Success!</strong> {{ sheet }} {{ success_message }}</div>
+    {% endif %}
+{% endblock %}

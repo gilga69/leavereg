@@ -32,7 +32,7 @@ def ulogin(request):
         if guest is not None:
             if guest.is_active:
                 login(request,guest)
-                return redirect('att:attview')
+                return redirect('att:attviewauth')
 
     return render(request,'login.html')
 
@@ -46,9 +46,29 @@ def index(request):
 
 
 def attview(request):
-
-
     context={
         'all_entries':attsheet.objects.all(),
+
     }
     return render(request,'all.html',context)
+
+
+def attviewauth(request):
+    context = {
+        'all_entries': attsheet.objects.all(),
+
+    }
+    return render(request, 'auth.html', context)
+
+def approveit(request,attsheet_id):
+    currentsheet = attsheet.objects.get(pk=attsheet_id)
+    currentsheet.approved=True
+    currentsheet.save()
+    msg=" approved successfully!"
+    context = {
+        'all_entries': attsheet.objects.all(),
+        'success_message':msg,
+        'sheet':currentsheet,
+        'approvance':True,
+    }
+    return render(request,'auth.html',context)

@@ -11,7 +11,10 @@ class attform(forms.ModelForm):
 
 
 
-
+class approvalform(forms.ModelForm):
+    class Meta:
+        model=attsheet
+        fields=['approved']
 
 
 
