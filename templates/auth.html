@@ -72,7 +72,7 @@ Contact Number
 
              {% if entry.approved == False%}
                  <div style="color:darkred"><b>Approval Pending</b></div>
-               <a href="{% url 'att:approveit' entry.pk %}"><button class="btn btn-success" type="button">Approve Now <span class="glyphicon glyphicon-check"></span></button></a>
+               <a href="{% url 'att:approveit' entry.pk %}"><button class="btn btn-success" type="button">Approve Now <span class="glyphicon glyphicon-thumbs-up"></span></button></a>
 
 
 
@@ -85,6 +85,7 @@ Contact Number
 
 <div class="text-center">
 <button class="btn btn-success" onclick="window.print();">Print</button>
+<a class="btn btn-danger" href="{%url 'att:index' %}" style="color:white;">Logout</a>
 </div>
 
     {% if approvance == True %}
