@@ -26,6 +26,8 @@ Contact Number
 <th>
     To Date
  </th>
+
+        <th>Approval Status</th>
     </tr>
 
 
@@ -53,6 +55,16 @@ Contact Number
 
         <td>
            {{ entry.to_date }}
+        </td>
+
+        <td>
+            {% if entry.approved == True %}
+                <button class="btn btn-success"><span class="glyphicon glyphicon-ok"></span></button>
+            {% endif %}
+
+            {% if entry.approved == False %}
+                <button class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></button>
+            {% endif %}
         </td>
 
            </tr>
