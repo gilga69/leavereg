@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import attform
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login,logout
 from .models import attsheet
 
 def attendancereg(request):
@@ -54,11 +54,14 @@ def attview(request):
 
 
 def attviewauth(request):
-    context = {
+    if request.user.is_authenticated():
+        context = {
         'all_entries': attsheet.objects.all(),
 
-    }
-    return render(request, 'auth.html', context)
+        }
+        return render(request, 'auth.html', context)
+
+    return redirect('att:auth_login')
 
 def approveit(request,attsheet_id):
     currentsheet = attsheet.objects.get(pk=attsheet_id)
@@ -72,3 +75,9 @@ def approveit(request,attsheet_id):
         'approvance':True,
     }
     return render(request,'auth.html',context)
+
+
+
+def log_out(request):
+    logout(request)
+    return redirect('att:index')
