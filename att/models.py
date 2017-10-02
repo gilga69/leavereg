@@ -10,6 +10,8 @@ class attsheet(models.Model):
     to_date=models.DateField()
     purpose=models.TextField(max_length=500)
     approved=models.BooleanField(default=False)
+    rejected=models.BooleanField(default=False)
+    remarks=models.TextField(max_length=100,default="None")
 
     def __str__(self):
         return self.name+"'s"+' leave entry'

@@ -66,6 +66,7 @@ def attviewauth(request):
 def approveit(request,attsheet_id):
     currentsheet = attsheet.objects.get(pk=attsheet_id)
     currentsheet.approved=True
+
     currentsheet.save()
     msg=" approved successfully!"
     context = {
@@ -75,6 +76,32 @@ def approveit(request,attsheet_id):
         'approvance':True,
     }
     return render(request,'auth.html',context)
+
+def rejectit(request,attsheet_id):
+    currentsheet = attsheet.objects.get(pk=attsheet_id)
+    currentsheet.rejected=True
+
+    currentsheet.save()
+    msg=" rejected!"
+    context = {
+        'all_entries': attsheet.objects.all(),
+        'success_message':msg,
+        'sheet':currentsheet,
+        'rejected':True,
+    }
+    return render(request,'auth.html',context)
+
+
+def writerem(request,attsheet_id):
+    if request.method=="GET":
+        return redirect('att:attviewauth')
+
+    currentsheet = attsheet.objects.get(pk=attsheet_id)
+
+    remark = request.POST.get('remarks', None)
+    currentsheet.remarks = remark
+    currentsheet.save()
+    return redirect('att:attviewauth')
 
 
 

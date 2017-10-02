@@ -2,8 +2,10 @@
 
 
 {% block insert %}
+    <div class="container-fluid">
     <div class="jumbotron text-center"><h2>All Leave Entries </h2></div>
-    <table class="table ">
+    </div>
+        <table class="table ">
     <tr>
 <th>
    Name
@@ -28,6 +30,8 @@ Contact Number
  </th>
 
         <th>Approval Status</th>
+
+        <th>Remarks</th>
     </tr>
 
 
@@ -35,8 +39,11 @@ Contact Number
 
     <tr {% if entry.approved == True %}class="bg-success"
     {% endif %}
-    {% if entry.approved == False %}class="bg-danger"
-    {% endif %}>
+    {% if entry.approved == False and entry.rejected == False %}class="bg-warning"
+    {% endif %}
+    {% if entry.rejected == True %}class="bg-danger"
+    {% endif %}
+    >
         <td>
            {{ entry.name }}
         </td>
@@ -57,14 +64,27 @@ Contact Number
            {{ entry.to_date }}
         </td>
 
-        <td>
+        <td class="text-center">
             {% if entry.approved == True %}
                 <p class="btn btn-success" > <span class="glyphicon glyphicon-ok"></span></p>
             {% endif %}
 
-            {% if entry.approved == False %}
+            {% if entry.rejected == True   %}
                 <p class="btn btn-danger"> <span class="glyphicon glyphicon-remove"></span></p>
             {% endif %}
+
+            {% if entry.rejected == False and entry.approved == False %}
+                <p class="btn btn-warning"> <span class="glyphicon glyphicon-hourglass"></span></p>
+            {% endif %}
+        </td>
+
+        <td>
+            {% if entry.remarks == "None"%}
+                <p style="color: #003366;"> No remarks yet!</p>
+            {% endif %}
+        {% if entry.remarks != "None" %}
+            {{ entry.remarks }}
+        {% endif %}
         </td>
 
            </tr>

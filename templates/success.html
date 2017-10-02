@@ -2,9 +2,11 @@
 
 
 {% block insert %}
-<div class='alert alert-success'><h6>{{ success_message }}</h6></div>
-    <div class="text-center">
-        <a class="btn btn-info" href="{% url 'att:index' %}">OK</a>
+    <div class='alert alert-success'><h6><strong>{{ success_message }}</strong></h6></div>
+    <div class="text-center container-fluid" style="margin-bottom: 100vh;">
+        <a class="btn btn-primary" href="{% url 'att:index' %}" style="color: whitesmoke;">OK</a>
+    <br/>
+ &nbsp;
     </div>
 
 {% endblock %}

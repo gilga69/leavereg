@@ -2,7 +2,7 @@
 
 
 {% block insert %}
-    <div class="well well-sm text-center"><h2>All Leave Entries </h2></div>
+    <div class="container-fluid"><div class="well well-sm text-center"><h2>All Leave Entries </h2></div></div>
     <table class="table table-striped">
     <tr>
 <th>
@@ -35,6 +35,9 @@ Contact Number
             Approval Status
         </th>
 
+        <th>
+            Remarks
+        </th>
     </tr>
 
 
@@ -66,30 +69,52 @@ Contact Number
 
 
         <td>
+            {% if entry.remarks == 'None'%}
+                <form method="post" action="{% url 'att:remarks' entry.pk %}">
+                {% csrf_token %}
+
+                <input type="text" name="remarks">
+                    <button class="btn btn-primary" type="submit">Write</button>
+                </form>
+            {% endif %}
+        {% if entry.remarks != 'None' %}
+        {{ entry.remarks }}
+        {% endif %}
+        </td>
+
+        <td>
             {% if entry.approved == True%}
                 <button class="btn btn-info" type="button">Approved <span class="glyphicon glyphicon-ok"></span></button>
             {% endif %}
 
-             {% if entry.approved == False%}
-                 <div style="color:darkred"><b>Approval Pending</b></div>
-               <a href="{% url 'att:approveit' entry.pk %}"><button class="btn btn-success" type="button">Approve Now <span class="glyphicon glyphicon-thumbs-up"></span></button></a>
+             {% if entry.approved == False and entry.rejected == False%}
 
-
-
+               <a href="{% url 'att:approveit' entry.pk %}"><button class="btn btn-success" type="submit" >Approve Now <span class="glyphicon glyphicon-thumbs-up"></span></button></a>
+             <a href="{% url 'att:rejectit' entry.pk %}"><button class="btn btn-danger" type="submit">Reject <span class="glyphicon glyphicon-thumbs-down"></span></button></a>
              {% endif %}
+
+        {% if entry.rejected == True%}
+            <div style="color:black"><b>Rejected</b></div>
+        {% endif %}
         </td>
+
+
    </tr>
     {% endfor %}
 
 </table>
 
 <div class="text-center" style="margin-bottom: 10px;">
-<button class="btn btn-success" onclick="window.print();">Print</button>
-<a class="btn btn-danger" href="{%url 'att:log_out' %}" style="color:white;">Logout</a>
+<button class="btn btn-info" onclick="window.print();">Print</button>
+<a class="btn btn-warning" href="{%url 'att:log_out' %}" style="color:white;">Logout</a>
 </div>
 
     {% if approvance == True %}
 
         <div class="alert alert-success" style="margin-top: 10px; "><strong>Success!</strong> {{ sheet }} {{ success_message }}</div>
+    {% endif %}
+    {% if rejected == True %}
+
+        <div class="alert alert-danger" style="margin-top: 10px; "><strong>Rejected!</strong> {{ sheet }} {{ success_message }}</div>
     {% endif %}
 {% endblock %}

@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
     <title>HKS Leave Register</title>
     <!-- Latest compiled and minified CSS -->
 
@@ -1493,15 +1496,15 @@ form .related-widget-wrapper ul {
 
 </style>
 <body>
-<nav class="navbar navbar-inverse">
+<nav class="navbar navbar-inverse container-fluid" >
   <div class="container-fluid">
     <div class="navbar-header">
-      <a class="navbar-brand" href="{% url 'att:index' %}">Home</a>
+      <a class="navbar-brand" href="{% url 'att:index' %}">Home &nbsp<span class="glyphicon glyphicon-home"></span></a>
     </div>
     <ul class="nav navbar-nav">
-      <li><a href="{% url 'att:att' %}">Leave Form</a></li>
-      <li><a href="{% url 'att:attview' %}">List of entries</a></li>
-      <li><a href="{% url 'att:auth_login' %}">Warden Comitte Login</a></li>
+      <li><a href="{% url 'att:att' %}">Leave Form &nbsp<span class="glyphicon glyphicon-list"></span></a></li>
+      <li><a href="{% url 'att:attview' %}">List of entries &nbsp<span class="glyphicon glyphicon-list-alt"></span></a></li>
+      <li><a href="{% url 'att:auth_login' %}">Warden Comitte Login &nbsp<span class="glyphicon glyphicon-tower"></span></a></li>
 
     </ul>
   </div>
@@ -1513,7 +1516,7 @@ form .related-widget-wrapper ul {
 <div class="container-fluid text-center " style="background-color:#95a5a6;height: 150px; ">
         <h1 style="color:black;vertical-align:middle;margin-top: 50px;">Copyrights &copy
         <div><h6>Reserved <span class="glyphicon glyphicon-sunglasses"></span></h6></div></h1>
-      
+       <p>Update release : 1.1</p>
 
 </div>
 </body>
