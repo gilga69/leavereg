@@ -79,8 +79,11 @@ Contact Number
         </td>
 
         <td>
-            {% if entry.remarks == "None"%}
+            {% if entry.remarks == "None" and entry.approved == False %}
                 <p style="color: #003366;"> No remarks yet!</p>
+            {% endif %}
+            {%if entry.remarks == "None" and entry.approved == True %}
+            <p style="color: #114422;">No remarks</p>
             {% endif %}
         {% if entry.remarks != "None" %}
             {{ entry.remarks }}
