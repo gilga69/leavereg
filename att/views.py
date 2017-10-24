@@ -8,6 +8,7 @@ def attendancereg(request):
     s_message="Success! Your response has been recorded!"
     e_message="Please fill all the fields properly!"
     if attsheetform.is_valid():
+
         attsheetform.save()
         context={
             'success_message': s_message,
