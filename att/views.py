@@ -3,6 +3,7 @@ from .forms import attform
 from django.contrib.auth import authenticate,login,logout
 from .models import attsheet
 
+#Create Attendance
 def attendancereg(request):
     attsheetform=attform(request.POST)
     s_message="Success! Your response has been recorded!"
@@ -23,7 +24,7 @@ def attendancereg(request):
     }
         return render(request,'error.html',context)
 
-
+#Login 
 def ulogin(request):
     if request.method=='POST':
         username=request.POST.get('username',None)
@@ -45,7 +46,7 @@ def index(request):
 
 
 
-
+#View All The Attendance entries
 def attview(request):
     context={
         'all_entries':attsheet.objects.all(),
@@ -63,6 +64,8 @@ def attviewauth(request):
         return render(request, 'auth.html', context)
 
     return redirect('att:auth_login')
+
+#approval view
 
 def approveit(request,attsheet_id):
     currentsheet = attsheet.objects.get(pk=attsheet_id)
@@ -105,7 +108,7 @@ def writerem(request,attsheet_id):
     return redirect('att:attviewauth')
 
 
-
+#Log out view
 def log_out(request):
     logout(request)
     return redirect('att:index')
